@@ -1,0 +1,37 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "name": "pantheon",
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/health",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/physics/query",
+      "destination": "/api/physics/query"
+    },
+    {
+      "source": "/agents/status",
+      "destination": "/api/agents/status"
+    },
+    {
+      "source": "/config",
+      "destination": "/api/config"
+    }
+  ],
+  "env": {
+    "PYTHONPATH": "/var/task:/var/task/physics_swarm",
+    "TAVILY_API_KEY": "demo_key"
+  },
+  "regions": ["iad1"],
+  "github": {
+    "enabled": true,
+    "autoAlias": true
+  }
+} 
